@@ -17,6 +17,6 @@ A simple full-stack Node.js app for writing memos
 
 ```shell
 
-sudo docker run -d --network=host -e PORT=3000 -e WEB_ADDRESS="http://localhost:3000" alirezabar/yadegari:latest
+sudo docker run -d --network=host -e PORT=<port> -e WEB_ADDRESS=<http://yourdomain> alirezabar/yadegari:latest
 
 ```
