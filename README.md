@@ -19,6 +19,6 @@ There is a live demo [here](https://yadegari.alirezabaratian.ir)
 
 ```shell
 
-sudo docker run -d --name yadegari --network=host -e PORT=<port> -e WEB_ADDRESS=<http://yourdomain> alirezabar/yadegari:latest
+sudo docker run -d --name yadegari --network=host --env-file <your-env-file> alirezabar/yadegari:latest
 
 ```
