@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 let ejs = require("ejs");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
 mongoose.connect("mongodb://127.0.0.1:27017/yadegariDB", {
   useNewUrlParser: true,
@@ -78,22 +79,29 @@ app.post("/sign-up", (req, res) => {
       if (foundUser) {
         res.render("sign-up-failure");
       } else {
-        const newUser = new User({
-          username: username,
-          password: password,
-          name: name,
-        });
-        newUser.save((err) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.render("user-memos", {
-              username: newUser.username,
-              name: newUser.name,
-              memos: newUser.memos,
-              webAddress: webAddress,
-            });
+        bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
+          if (hashErr) {
+            console.log(hashErr);
+            return res.status(500).send("Internal Server Error");
           }
+          const newUser = new User({
+            username: username,
+            password: hashedPassword,
+            name: name,
+          });
+          newUser.save((saveErr) => {
+            if (saveErr) {
+              console.log(saveErr);
+              return res.status(500).send("Internal Server Error");
+            } else {
+              res.render("user-memos", {
+                username: newUser.username,
+                name: newUser.name,
+                memos: newUser.memos,
+                webAddress: webAddress,
+              });
+            }
+          });
         });
       }
     }
@@ -111,16 +119,22 @@ app.post("/sign-in", (req, res) => {
       if (!foundUser) {
         res.render("not-registered");
       } else {
-        if (password !== foundUser.password) {
-          res.render("wrong-password");
-        } else {
-          res.render("user-memos", {
-            username: foundUser.username,
-            name: foundUser.name,
-            memos: foundUser.memos,
-            webAddress: webAddress,
-          });
-        }
+        bcrypt.compare(password, foundUser.password, (compareErr, isMatch) => {
+          if (compareErr) {
+            console.log(compareErr);
+            return res.status(500).send("Internal Server Error");
+          }
+          if (!isMatch) {
+            res.render("wrong-password");
+          } else {
+            res.render("user-memos", {
+              username: foundUser.username,
+              name: foundUser.name,
+              memos: foundUser.memos,
+              webAddress: webAddress,
+            });
+          }
+        });
       }
     }
   });
