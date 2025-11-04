@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-let ejs = require("ejs");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
