@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-
-mongoose.connect("mongodb://127.0.0.1:27017/yadegariDB", {
+const databaseName = process.env.DATABASE_NAME;
+mongoose.connect(`mongodb://127.0.0.1:27017/${databaseName}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
