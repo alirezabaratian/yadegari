@@ -9,17 +9,23 @@ mongoose.connect("mongodb://127.0.0.1:27017/yadegariDB", {
   useUnifiedTopology: true,
 });
 
-const memoSchema = new mongoose.Schema({
-  author: String,
-  date: String,
-  message: String,
-});
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  name: String,
-  memos: [memoSchema],
-});
+const memoSchema = new mongoose.Schema(
+  {
+    author: String,
+    date: String,
+    message: String,
+  },
+  { timestamps: true, versionKey: false }
+);
+const userSchema = new mongoose.Schema(
+  {
+    username: String,
+    password: String,
+    name: String,
+    memos: [memoSchema],
+  },
+  { timestamps: true, versionKey: false }
+);
 
 const Memo = new mongoose.model("Memo", memoSchema);
 const User = new mongoose.model("User", userSchema);
