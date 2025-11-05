@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-require("dotenv").config();
 const bcrypt = require("bcrypt");
-const databaseName = process.env.DATABASE_NAME;
-mongoose.connect(`mongodb://127.0.0.1:27017/${databaseName}`, {
+
+const databaseURI = process.env.DB_URI;
+mongoose.connect(databaseURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -29,6 +30,7 @@ const userSchema = new mongoose.Schema(
 
 const Memo = new mongoose.model("Memo", memoSchema);
 const User = new mongoose.model("User", userSchema);
+
 const app = express();
 const port = process.env.PORT;
 const webAddress = `${process.env.WEB_ADDRESS}:${port}`;
