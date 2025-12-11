@@ -21,3 +21,7 @@ A simple full-stack Node.js app for writing memos
 ```bash
 docker run -d --name yadegari --restart always --network host --env-file .env alirezabtn/yadegari:latest
 ```
+
+## Issues
+
+- Web address should be removed entirely and replaced with a solid mechanism
