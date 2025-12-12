@@ -1,0 +1,21 @@
+services:
+  app:
+    image: alirezabtn/yadegari:latest
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - app_net
+    env_file:
+      - .env
+    restart: unless-stopped
+  mongo:
+    image: mongo:8
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_net
+volumes:
+  mongo_data:
+networks:
+  app_net:
