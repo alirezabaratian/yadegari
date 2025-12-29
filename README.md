@@ -29,8 +29,3 @@ docker run -d --name yadegari --restart always --network host --env-file .env al
 ```bash
 docker compose up -d && docker compose logs -f app
 ```
-
-
-## Issues
-
-- Web address should be removed entirely and replaced with a solid mechanism
