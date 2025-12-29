@@ -29,3 +29,7 @@ docker run -d --name yadegari --restart always --network host --env-file .env al
 ```bash
 docker compose up -d && docker compose logs -f app
 ```
+
+## To-Do
+
+- Add session management
