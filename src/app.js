@@ -30,7 +30,7 @@ const User = new mongoose.model("User", userSchema);
 
 const app = express();
 const port = process.env.PORT;
-const webAddress = `${process.env.WEB_ADDRESS}:${port}`;
+const webAddress = process.env.WEB_ADDRESS;
 
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
@@ -156,5 +156,5 @@ app.post("/new-memo", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Server is listening on " + webAddress);
+  console.log("Server is listening on " + webAddress + ":" + port);
 });
