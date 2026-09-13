@@ -1,0 +1,9 @@
+/* Peyda Variable Font - Font Face Declaration */
+
+@font-face {
+    font-family: 'PeydaWebVF';
+    src: url('./fonts/PeydaWebVF.woff2') format('woff2-variations');
+    font-weight: 100 950;
+    font-style: normal;
+    font-display: swap;
+  }

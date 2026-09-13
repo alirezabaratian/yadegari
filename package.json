@@ -1,0 +1,29 @@
+{
+  "name": "yadegari",
+  "version": "0.0.1",
+  "description": "A simple Node.js app for sharing memos at the end of the year",
+  "homepage": "https://github.com/alirezabaratian/yadegari#readme",
+  "bugs": {
+    "url": "https://github.com/alirezabaratian/yadegari/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alirezabaratian/yadegari.git"
+  },
+  "license": "MIT",
+  "author": "Alireza Baratian",
+  "type": "commonjs",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.3.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.10.0"
+  }
+}
